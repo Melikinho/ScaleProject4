@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -75,6 +77,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
+
                 Console.WriteLine("Enter the Name to add it to the list: ");
                 string input = Console.ReadLine();
 
@@ -119,14 +122,17 @@ namespace SkalProj_Datastrukturer_Minne
                 void CheckifValue()
                 {
                     var match = theList.FirstOrDefault(stringToCheck => stringToCheck.Contains(value));
-                    if (value != match)
+                    if (value == match)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine($"The Name: {value} has been removed from the List. ");
                         Console.ResetColor();
                     }
                     else
-                        Console.WriteLine("Did not find the existing name. Please re-consider your input. ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"{value} has been Removed");
+                        Console.ResetColor();
+
                 }
 
 
@@ -145,7 +151,76 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+            Queue<string> queue = new Queue<string>();
+            while (true);
+            {
+                Console.WriteLine("The shop opens & the queue to the desk is empty");
+
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "exit":
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("*************Thank you for using our service. Welcome back later!. *************");
+                        Console.ResetColor();
+                        Environment.Exit(1);
+                        break;
+                    case "queue":
+                        TestQueue();
+                        WaitForUser();
+                        break;
+                    case "dequeue":
+                        TestDequeue();
+                        WaitForUser();
+                        break;
+                    default:
+                        break;
+
+
+                }
+
+
+                void TestQueue()
+                {
+                    string value;
+                    value = Console.ReadLine();
+                    queue.Enqueue(value);
+                    Console.WriteLine($"{value} stands currently in line. ");
+                    Sleep();
+                }
+                void TestDequeue()
+                {
+                    string value;
+                    value = Console.ReadLine();
+                    queue.Dequeue();
+                    Console.WriteLine($"{value} has left the line");
+                    Sleep();
+
+                }
+
+                void Sleep()
+                {
+                    Thread.Sleep(2000);
+                }
+
+                void WaitForUser()
+                {
+                    Console.WriteLine("Click any button to continnue. ");
+                    Console.ReadLine();
+                }
+
+                foreach (var name in queue)
+                {
+                    Console.WriteLine($"This name: {name} is standing in the queue");    
+                }
+
+            }
+
         }
+
+
+
 
         /// <summary>
         /// Examines the datastructure Stack
