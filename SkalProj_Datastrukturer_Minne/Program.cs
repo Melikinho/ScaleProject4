@@ -71,14 +71,69 @@ namespace SkalProj_Datastrukturer_Minne
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
             */
+            List<string> theList = new List<string>();
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            while (true)
+            {
+                Console.WriteLine("Enter the Name to add it to the list: ");
+                string input = Console.ReadLine();
 
-            //switch(nav){...}
-        }
+                char nav = input[0];
+                string value = input.Substring(1);
+                switch (nav)
+                {
+                    case '0':
+                        {
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.WriteLine("*************Thank you for using our service. Welcome back later!. *************");
+                            Console.ResetColor();
+                            Environment.Exit(1);
+                            break;
+                        }
+                    case '+':
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            theList.Add(value);
+                            Console.WriteLine($"The Name: {value} has been added to the List.");
+                            Console.ResetColor();
+                            break;
+                        }
+                    case '-':
+                        {
+                            theList.Remove(value);
+                            CheckifValue();
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Wrong input. Please, re-consider your input again! ");
+                            break;
+                        }
+
+                }
+                foreach (var item in theList)
+                {
+                    Console.WriteLine($"The list contains: {item}");
+                }
+
+                void CheckifValue()
+                {
+                    var match = theList.FirstOrDefault(stringToCheck => stringToCheck.Contains(value));
+                    if (value != match)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"The Name: {value} has been removed from the List. ");
+                        Console.ResetColor();
+                    }
+                    else
+                        Console.WriteLine("Did not find the existing name. Please re-consider your input. ");
+                }
+
+
+
+            }
+
+    }
 
         /// <summary>
         /// Examines the datastructure Queue
