@@ -153,9 +153,16 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             Queue<string> queue = new Queue<string>();
-            while (true);
+
+            bool done = false;
+            while (!done)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("The shop opens & the queue to the desk is empty");
+                Console.WriteLine("Press exit to quit.\n Press queue to put a person on the queue. \n Press dequeue for dequeue. \n ");
+                Console.WriteLine("Press return to return to main menu ");
+                Console.ResetColor();
+                
 
                 string input = Console.ReadLine();
                 switch (input)
@@ -163,7 +170,8 @@ namespace SkalProj_Datastrukturer_Minne
                     case "exit":
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("*************Thank you for using our service. Welcome back later!. *************");
-                        Console.ResetColor();
+                        Console.ResetColor(
+                            );
                         Environment.Exit(1);
                         break;
                     case "queue":
@@ -174,45 +182,58 @@ namespace SkalProj_Datastrukturer_Minne
                         TestDequeue();
                         WaitForUser();
                         break;
+                    case "return":
+                        return;
                     default:
                         break;
 
 
                 }
-
+                foreach (var name in queue)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"This name: {name} is standing in the queue");
+                    Console.ResetColor();
+                }
 
                 void TestQueue()
                 {
                     string value;
                     value = Console.ReadLine();
                     queue.Enqueue(value);
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"{value} stands currently in line. ");
+                    Console.ResetColor();
                     Sleep();
                 }
                 void TestDequeue()
                 {
-                    string value;
-                    value = Console.ReadLine();
-                    queue.Dequeue();
-                    Console.WriteLine($"{value} has left the line");
-                    Sleep();
+                    try
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"{queue.Dequeue()} has left the line");
+                        Console.ResetColor();
+                        Sleep();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Nothing to dequeue, please try again. ");
+                    }
+
 
                 }
 
                 void Sleep()
                 {
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
                 }
 
                 void WaitForUser()
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("Click any button to continnue. ");
                     Console.ReadLine();
-                }
-
-                foreach (var name in queue)
-                {
-                    Console.WriteLine($"This name: {name} is standing in the queue");    
+                    Console.Clear();
                 }
 
             }
