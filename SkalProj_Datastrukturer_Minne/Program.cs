@@ -253,6 +253,9 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+            Stack stack = new Stack();
+
         }
 
         static void CheckParanthesis()
