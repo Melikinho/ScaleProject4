@@ -254,7 +254,87 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
 
+            /* Stack-'protokollet gäller FIFO principen. Om T.ex. Karin ställer sig i kön, Jonas bakom karin, och Anders bakom Jonas så åker Karin sist ut.
+              D.v.s först in - sist ut. Skulle jag ta bort ett elemnt efter Anders så ryker Anders först. Lite omvänt gentemot Queue klassen.
+            */
+
             Stack stack = new Stack();
+
+            bool run = false;
+            while (!run)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Press 'Exit' to quit ");
+                Console.WriteLine("Press 'Return' to go back to main menu ");
+                Console.WriteLine("Press 'Push' to add element ");
+                Console.WriteLine("Press 'Pop' to remove element ");
+                Console.WriteLine("Press 'Reverse' to reverse the string text using Stack ");
+                Console.ResetColor();
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "Exit":
+                        {
+                            Environment.Exit(1);
+                            break;
+                        }
+                    case "Return":
+                        {
+                            return;
+                        }
+                    case "Push":
+                        {
+                            Push();
+                            break; ;
+                        }
+                    case "Pop":
+                        {
+                            break;
+                        }
+                    case "Reverse":
+                        {
+                            ReverseStack();
+                            break;
+                        }
+                    default:
+                        break;
+
+                }
+
+                void ReverseStack()
+                {
+                    Console.WriteLine("Enter your string text to reverse it: ");
+                    string value = Console.ReadLine();
+                    if (string.IsNullOrEmpty(value))
+                        Console.WriteLine("Please enter a string name! ");
+                    //var reversedStr = " ";
+                    Stack stack = new Stack();
+                    foreach (var item in stack)
+                    {
+                        stack.Push(value);
+                        while (stack.Count > 0)
+                            value += stack.Pop();
+
+                    }
+
+                }
+                void Pop()
+                {
+
+                }
+                void Push()
+                {
+                    string value;
+                    Console.WriteLine("Enter the name to push it to the stack: ");
+                    value = Console.ReadLine();
+                    stack.Push(value);
+                }
+                foreach (var item in stack)
+                {
+                    Console.WriteLine($"There is currently {item} in the stack. ");
+
+                }
+            }
 
         }
 
